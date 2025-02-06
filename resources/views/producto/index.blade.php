@@ -22,6 +22,7 @@
                     <th>Descripción</th>
                     <th>Precio</th>
                     <th>Existencia</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,6 +34,14 @@
                     <td>{{ $producto->descripcion }}</td>
                     <td>{{ number_format($producto->precio, 2) }} €</td>
                     <td>{{ $producto->existencia }}</td>
+                    <td>
+                        <form action="{{ url('/productos/'. $producto->id) }}" method="post">
+                            @method("DELETE")
+                            @csrf
+                            <button type="submit">Eliminar</button>
+                        </form>
+                        <a href="{{ url('/productos/edit/'. $producto->id) }}">Editar</a>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

@@ -31,6 +31,12 @@ Route::get("/cliente/{id}", [ClienteController::class, "show"]);
 
 Route::get("/productos/{id?}", [ProductoController::class, "show"]);
 
+Route::delete("/productos/{id}", [ProductoController::class, "destroy"]);
+
+Route::get("/productos/edit/{id}", [ProductoController::class, "edit"]);
+
+Route::put("/productos/edit/{id}", [ProductoController::class, "update"]);
+
 /*Route::get('/productos/{id}', function ($id) {
     return view('catalogo', ['id' => $id]);
 });*/
