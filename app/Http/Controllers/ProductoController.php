@@ -33,8 +33,7 @@ class ProductoController extends Controller
         $producto->existencia = 0;
         $producto->activo = 1;
         $producto->save();
-
-        return redirect("/productos");
+        return redirect()->route('productos.index')->with('success', 'Producto creado exitosamente');
         //print_r($request->all());
     }
     /**
@@ -55,7 +54,7 @@ class ProductoController extends Controller
         $producto->descripcion = $request->input('nombre');
         $producto->precio = $request->input('precio');
         $producto->save();
-        return redirect("/productos");
+        return redirect()->route('productos.index', ['id' => $id])->with('success', 'Producto editado con éxito');
     }
 
     /**
@@ -69,6 +68,6 @@ class ProductoController extends Controller
 
         $producto = Producto::find($id);
         $producto->delete();
-        return redirect("/productos");
+        return redirect()->route('productos.index', ['id' => $id])->with('success', 'Producto eliminado correctamente');
     }
 }
